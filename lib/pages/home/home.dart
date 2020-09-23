@@ -1,3 +1,4 @@
+import 'package:cat_app/pages/home/widgets/home_body.dart';
 import 'package:flutter/material.dart';
 import 'package:cat_app/pages/home/widgets/header.dart';
 import 'package:cat_app/pages/home/widgets/menu.dart';
@@ -15,9 +16,13 @@ class HomePage extends StatelessWidget {
               height: 10,
             ),
             Menu(),
+            HomeBody()
           ],
         ),
       )),
     );
   }
 }
+
+
+
