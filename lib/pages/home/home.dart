@@ -17,19 +17,17 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-          child: SingleChildScrollView(
-        child: Column(
-          children: [
-            Header(),
-            SizedBox(
-              height: 10,
-            ),
-            Menu(),
-            SizedBox(height: 20,),
-            HomeBody()
-          ],
-        ),
-      )),
+          child: Column(
+            children: [
+              Header(),
+              SizedBox(
+                height: 10,
+              ),
+              Menu(),
+              SizedBox(height: 20,),
+              HomeBody()
+            ],
+          )),
     );
   }
 }

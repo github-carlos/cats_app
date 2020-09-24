@@ -24,33 +24,48 @@ class _HomeBodyState extends State<HomeBody> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: MediaQuery.of(context).size.height - 100,
-      child: Observer(
-        builder: (_) => PageView(
-          controller: pageViewControllerStore.pageController,
-          onPageChanged: (int page) {
-            pageViewControllerStore.changeCurrentPage(page);
-          },
-          children: [
-            Column(
-              children: [
-                Padding(
-                padding: EdgeInsets.all(8.0),
-                child: ItemsList(title: 'Breeds', resource: catApiStore.breeds,),
-                ),
-                Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: ItemsList(title: 'Categories', resource: catApiStore.categories)
-                )
-              ],
-            ),
-            Container(
-              width: 100,
-              height: 100,
-              color: Colors.blue,
-            )
-          ],
+    return Expanded(
+      child: Container(
+        child: Observer(
+          builder: (_) => PageView(
+            controller: pageViewControllerStore.pageController,
+            onPageChanged: (int page) {
+              pageViewControllerStore.changeCurrentPage(page);
+            },
+            children: [
+              Column(
+                children: [
+                  Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: ItemsList(
+                      title: 'Breeds',
+                      resource: catApiStore.breeds,
+                    ),
+                  ),
+                  Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: ItemsList(
+                          title: 'Categories', resource: catApiStore.categories)),
+                  Expanded(
+                    child: catApiStore.randomImages != null ? GridView.builder(
+                        gridDelegate: new SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 2),
+                        itemCount: catApiStore.randomImages.length,
+                        itemBuilder: (context, index) {
+                          return Image.network(catApiStore.randomImages[index].url);
+                        }) : Center(
+                      child: CircularProgressIndicator(),
+                    ),
+                  ),
+                ],
+              ),
+              Container(
+                width: 100,
+                height: 100,
+                color: Colors.blue,
+              )
+            ],
+          ),
         ),
       ),
     );
@@ -58,7 +73,6 @@ class _HomeBodyState extends State<HomeBody> {
 }
 
 class ItemsList extends StatelessWidget {
-
   final String title;
   final List<dynamic> resource;
 

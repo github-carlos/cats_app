@@ -39,6 +39,21 @@ mixin _$CatApiStore on _CatApiStoreBase, Store {
     });
   }
 
+  final _$randomImagesAtom = Atom(name: '_CatApiStoreBase.randomImages');
+
+  @override
+  List<ImageCat> get randomImages {
+    _$randomImagesAtom.reportRead();
+    return super.randomImages;
+  }
+
+  @override
+  set randomImages(List<ImageCat> value) {
+    _$randomImagesAtom.reportWrite(value, super.randomImages, () {
+      super.randomImages = value;
+    });
+  }
+
   final _$loadBreedsAsyncAction = AsyncAction('_CatApiStoreBase.loadBreeds');
 
   @override
@@ -46,11 +61,29 @@ mixin _$CatApiStore on _CatApiStoreBase, Store {
     return _$loadBreedsAsyncAction.run(() => super.loadBreeds());
   }
 
+  final _$loadCategoriesAsyncAction =
+      AsyncAction('_CatApiStoreBase.loadCategories');
+
+  @override
+  Future loadCategories() {
+    return _$loadCategoriesAsyncAction.run(() => super.loadCategories());
+  }
+
+  final _$loadRandomImagesAsyncAction =
+      AsyncAction('_CatApiStoreBase.loadRandomImages');
+
+  @override
+  Future loadRandomImages(int page) {
+    return _$loadRandomImagesAsyncAction
+        .run(() => super.loadRandomImages(page));
+  }
+
   @override
   String toString() {
     return '''
 breeds: ${breeds},
-categories: ${categories}
+categories: ${categories},
+randomImages: ${randomImages}
     ''';
   }
 }
