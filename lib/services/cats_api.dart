@@ -25,10 +25,32 @@ class CatsApi {
     return categoriesList;
   }
 
-  Future<List<ImageCat>> getRandomImages(int page) async {
-    final imagesCatsFromApi = await http.get('$baseUrl/images/search?page=$page&limit=10', headers: {'x-api-key': apiKey});
+  Future<List<ImageCat>> getRandomImages(int page, [Map<String, String> query]) async {
+
+    String url = '$baseUrl/images/search?page=$page&limit=10';
+    if (query != null) {
+     if (query.containsKey('breed_id')) {
+       url += '&breed_id=${query['breed_id']}';
+     } else {
+       if (query.containsKey('category_id')) {
+         url += '&category_ids=${query['category_id']}';
+       }
+       print('url $url');
+     }
+    }
+    final imagesCatsFromApi = await http.get(url, headers: {'x-api-key': apiKey});
     List<dynamic> decodedJson = jsonDecode(imagesCatsFromApi.body);
     var imagesCatsLists = decodedJson.map((e) => ImageCat.fromJson(e)).toList();
     return imagesCatsLists;
+  }
+
+  Future<List<ImageCat>>  getBreedImages(String breedId, int page) async {
+    final breedImages = await this.getRandomImages(page, {'breed_id': breedId});
+    return breedImages;
+  }
+
+  Future<List<ImageCat>> getCategoryImages(String categoryId, int page) async {
+    final categoryImages = await this.getRandomImages(page, {'category_id': categoryId});
+    return categoryImages;
   }
 }

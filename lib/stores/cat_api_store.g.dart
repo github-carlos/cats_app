@@ -54,6 +54,21 @@ mixin _$CatApiStore on _CatApiStoreBase, Store {
     });
   }
 
+  final _$catImagesListAtom = Atom(name: '_CatApiStoreBase.catImagesList');
+
+  @override
+  List<ImageCat> get catImagesList {
+    _$catImagesListAtom.reportRead();
+    return super.catImagesList;
+  }
+
+  @override
+  set catImagesList(List<ImageCat> value) {
+    _$catImagesListAtom.reportWrite(value, super.catImagesList, () {
+      super.catImagesList = value;
+    });
+  }
+
   final _$loadBreedsAsyncAction = AsyncAction('_CatApiStoreBase.loadBreeds');
 
   @override
@@ -69,6 +84,24 @@ mixin _$CatApiStore on _CatApiStoreBase, Store {
     return _$loadCategoriesAsyncAction.run(() => super.loadCategories());
   }
 
+  final _$loadBreedImagesAsyncAction =
+      AsyncAction('_CatApiStoreBase.loadBreedImages');
+
+  @override
+  Future loadBreedImages(String breedId, int page, int size) {
+    return _$loadBreedImagesAsyncAction
+        .run(() => super.loadBreedImages(breedId, page, size));
+  }
+
+  final _$loadCategoryImagesAsyncAction =
+      AsyncAction('_CatApiStoreBase.loadCategoryImages');
+
+  @override
+  Future loadCategoryImages(String categoryId, int page, int size) {
+    return _$loadCategoryImagesAsyncAction
+        .run(() => super.loadCategoryImages(categoryId, page, size));
+  }
+
   final _$loadRandomImagesAsyncAction =
       AsyncAction('_CatApiStoreBase.loadRandomImages');
 
@@ -78,12 +111,27 @@ mixin _$CatApiStore on _CatApiStoreBase, Store {
         .run(() => super.loadRandomImages(page));
   }
 
+  final _$_CatApiStoreBaseActionController =
+      ActionController(name: '_CatApiStoreBase');
+
+  @override
+  dynamic clearCatsListImages() {
+    final _$actionInfo = _$_CatApiStoreBaseActionController.startAction(
+        name: '_CatApiStoreBase.clearCatsListImages');
+    try {
+      return super.clearCatsListImages();
+    } finally {
+      _$_CatApiStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
   @override
   String toString() {
     return '''
 breeds: ${breeds},
 categories: ${categories},
-randomImages: ${randomImages}
+randomImages: ${randomImages},
+catImagesList: ${catImagesList}
     ''';
   }
 }

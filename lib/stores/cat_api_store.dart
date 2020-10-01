@@ -22,6 +22,9 @@ abstract class _CatApiStoreBase with Store {
   @observable
   List<ImageCat> randomImages;
 
+  @observable
+  List<ImageCat> catImagesList;
+
   @action
   loadBreeds() async {
     breeds = await catsApi.getBreeds();
@@ -30,6 +33,46 @@ abstract class _CatApiStoreBase with Store {
   @action
   loadCategories() async {
     categories = await catsApi.getCategories();
+  }
+
+  @action
+  loadBreedImages(String breedId, int page, int size) async {
+    if (page == null) {
+      page = 1;
+    }
+    if (size == null) {
+      size = 10;
+    }
+    catImagesList = await catsApi.getBreedImages(breedId, page);
+  }
+
+  @action
+  loadCategoryImages(String categoryId, int page, int size) async {
+    if (page == null) {
+      page = 1;
+    }
+    if (size == null) {
+      size = 10;
+    }
+    catImagesList = await catsApi.getCategoryImages(categoryId, page);
+  }
+
+
+  getCatListImages(String resourceName, String resourceId, int page, int size) {
+    switch(resourceName) {
+      case 'breed':
+        loadBreedImages(resourceId, page, size);
+        break;
+      case 'category':
+        loadCategoryImages(resourceId, page, size);
+        break;
+      default:
+        break;
+    }
+  }
+
+  @action clearCatsListImages() {
+    catImagesList = null;
   }
 
   @action
