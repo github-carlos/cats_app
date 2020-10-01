@@ -1,8 +1,10 @@
 import 'dart:convert';
+import 'dart:ffi';
 
 import 'package:cat_app/configs/api_configs.dart';
 import 'package:cat_app/models/Breed.dart';
 import 'package:cat_app/models/Category.dart';
+import 'package:cat_app/models/Favorite.dart';
 import 'package:cat_app/models/ImageCat.dart';
 import 'package:http/http.dart' as http;
 
@@ -52,5 +54,19 @@ class CatsApi {
   Future<List<ImageCat>> getCategoryImages(String categoryId, int page) async {
     final categoryImages = await this.getRandomImages(page, {'category_id': categoryId});
     return categoryImages;
+  }
+
+  Future<List<Favorite>> getFavorites() async {
+    final favoritesFromApi = await http.get('$baseUrl/favourites', headers: {'x-api-key': apiKey});
+    List<dynamic> decodedJson = jsonDecode(favoritesFromApi.body);
+    var favoritesList = decodedJson.map((e) => Favorite.fromJson(e)).toList();
+    return favoritesList;
+  }
+  
+  Future<dynamic> saveFavoriteImage(String imageId) async {
+    print('imageid $imageId');
+    var body = jsonEncode({'image_id': imageId});
+    final savedFavorite = await http.post('$baseUrl/favourites', headers: {'x-api-key': apiKey, "Content-Type": "application/json"}, body: body );
+    return savedFavorite.body;
   }
 }

@@ -69,6 +69,21 @@ mixin _$CatApiStore on _CatApiStoreBase, Store {
     });
   }
 
+  final _$favoriteImagesAtom = Atom(name: '_CatApiStoreBase.favoriteImages');
+
+  @override
+  List<Favorite> get favoriteImages {
+    _$favoriteImagesAtom.reportRead();
+    return super.favoriteImages;
+  }
+
+  @override
+  set favoriteImages(List<Favorite> value) {
+    _$favoriteImagesAtom.reportWrite(value, super.favoriteImages, () {
+      super.favoriteImages = value;
+    });
+  }
+
   final _$loadBreedsAsyncAction = AsyncAction('_CatApiStoreBase.loadBreeds');
 
   @override
@@ -102,6 +117,15 @@ mixin _$CatApiStore on _CatApiStoreBase, Store {
         .run(() => super.loadCategoryImages(categoryId, page, size));
   }
 
+  final _$loadFavoriteImagesAsyncAction =
+      AsyncAction('_CatApiStoreBase.loadFavoriteImages');
+
+  @override
+  Future loadFavoriteImages() {
+    return _$loadFavoriteImagesAsyncAction
+        .run(() => super.loadFavoriteImages());
+  }
+
   final _$loadRandomImagesAsyncAction =
       AsyncAction('_CatApiStoreBase.loadRandomImages');
 
@@ -131,7 +155,8 @@ mixin _$CatApiStore on _CatApiStoreBase, Store {
 breeds: ${breeds},
 categories: ${categories},
 randomImages: ${randomImages},
-catImagesList: ${catImagesList}
+catImagesList: ${catImagesList},
+favoriteImages: ${favoriteImages}
     ''';
   }
 }

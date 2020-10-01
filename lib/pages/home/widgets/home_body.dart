@@ -1,3 +1,4 @@
+import 'package:cat_app/pages/favorites/favorites.dart';
 import 'package:cat_app/pages/home/widgets/items_list.dart';
 import 'package:cat_app/stores/cat_api_store.dart';
 import 'package:cat_app/stores/page_view_controller_store.dart';
@@ -70,6 +71,7 @@ class _HomeBodyState extends State<HomeBody> {
                             gridDelegate:
                                 new SliverGridDelegateWithFixedCrossAxisCount(
                                     crossAxisCount: 2),
+                            physics: ScrollPhysics(),
                             itemCount: catApiStore.randomImages.length,
                             itemBuilder: (context, index) {
                               return Padding(
@@ -84,11 +86,7 @@ class _HomeBodyState extends State<HomeBody> {
                   ),
                 ],
               ),
-              Container(
-                width: 100,
-                height: 100,
-                color: Colors.blue,
-              )
+             Favorites()
             ],
           ),
         ),

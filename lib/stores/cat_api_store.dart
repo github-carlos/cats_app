@@ -1,5 +1,6 @@
 import 'package:cat_app/models/Breed.dart';
 import 'package:cat_app/models/Category.dart';
+import 'package:cat_app/models/Favorite.dart';
 import 'package:cat_app/models/ImageCat.dart';
 import 'package:cat_app/services/cats_api.dart';
 import 'package:mobx/mobx.dart';
@@ -24,6 +25,8 @@ abstract class _CatApiStoreBase with Store {
 
   @observable
   List<ImageCat> catImagesList;
+  @observable
+  List<Favorite> favoriteImages;
 
   @action
   loadBreeds() async {
@@ -55,6 +58,19 @@ abstract class _CatApiStoreBase with Store {
       size = 10;
     }
     catImagesList = await catsApi.getCategoryImages(categoryId, page);
+  }
+
+  @action
+  loadFavoriteImages() async {
+    favoriteImages = await catsApi.getFavorites();
+    print('loading favorites $favoriteImages');
+  }
+
+  saveFavorite(String imageId) async {
+    final savedFavorite = await catsApi.saveFavoriteImage(imageId);
+    loadFavoriteImages();
+    print('saved favorite $savedFavorite');
+    return;
   }
 
 
