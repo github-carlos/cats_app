@@ -51,9 +51,17 @@ class _HomeBodyState extends State<HomeBody> {
                           resourceName: 'category')),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Text(
-                      'Random Cats',
-                      style: TextStyle(fontSize: 20),
+                    child: Row(
+                      children: [
+                        Text(
+                          'Random Cats',
+                          style: TextStyle(fontSize: 20),
+                        ),
+                        Spacer(),
+                        IconButton(icon: Icon(Icons.refresh_sharp, size: 30,), onPressed: () {
+                          catApiStore.loadRandomImages(1);
+                        })
+                      ],
                     ),
                   ),
                   Expanded(

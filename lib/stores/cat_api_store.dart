@@ -77,6 +77,7 @@ abstract class _CatApiStoreBase with Store {
 
   @action
   loadRandomImages(int page) async {
+    randomImages = null;
     if (page == null) {
       page = 1;
     }
