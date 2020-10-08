@@ -1,16 +1,26 @@
-# cat_app
+# Cat App 🐱
 
-A new Flutter application.
+This project was done as a proejct study of the [Flutter](https://flutter.dev/?gclid=Cj0KCQjw8fr7BRDSARIsAK0Qqr4OLCprOf_HXWjnd8K7K1bepeDaqcvrYXdy5l2LdAghLRUz_7HgR6saAoA6EALw_wcB&gclsrc=aw.ds) framework.Images and gifs of the cats are provided by this awesome [TheCatApi](https://docs.thecatapi.com/).
 
-## Getting Started
+## Project demonstration
+![App Demonstração](demonstração.gif)
 
-This project is a starting point for a Flutter application.
+## Packages that I used
+* [Mobx]():
+    Used to make the state management of the App
+* [GetIt]():
+    Helps to provide a Singleton inside the entire project (used along with the mobx to share the same store through the app)
+* [Http]():
+    Package that allow making http requests to the CatApi.
+* [flutter_staggered_grid_view]():
+    Package to help making a grid with items
+* [flutter_svg]():
+    Package for helping loading assets of svg
+## Resources
+*   Icons:
+    icons providedd from the site [FlatIcon](https://www.flaticon.com/).
+*   Images and Gifs:
+    The awesome images and gifs are provided form the [TheCatApi](https://docs.thecatapi.com/).
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Considerations
+App developed by me. You are open to copy or/and use this code for studying as you want.
