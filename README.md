@@ -6,15 +6,15 @@ This project was done as a proejct study of the [Flutter](https://flutter.dev/?g
 ![App Demonstração](demonstração.gif)
 
 ## Packages that I used
-* [Mobx]():
+* [Mobx](https://pub.dev/packages/mobx):
     Used to make the state management of the App
-* [GetIt]():
+* [GetIt](https://pub.dev/packages/get_it):
     Helps to provide a Singleton inside the entire project (used along with the mobx to share the same store through the app)
-* [Http]():
+* [Http](https://pub.dev/packages/http):
     Package that allow making http requests to the CatApi.
-* [flutter_staggered_grid_view]():
+* [flutter_staggered_grid_view](https://pub.dev/packages/flutter_staggered_grid_view):
     Package to help making a grid with items
-* [flutter_svg]():
+* [flutter_svg](https://pub.dev/packages/flutter_svg):
     Package for helping loading assets of svg
 ## Resources
 *   Icons:
