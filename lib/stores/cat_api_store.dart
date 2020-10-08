@@ -26,7 +26,7 @@ abstract class _CatApiStoreBase with Store {
   @observable
   List<ImageCat> catImagesList;
   @observable
-  List<Favorite> favoriteImages;
+  ObservableList<Favorite> favoriteImages;
 
   @action
   loadBreeds() async {
@@ -62,15 +62,19 @@ abstract class _CatApiStoreBase with Store {
 
   @action
   loadFavoriteImages() async {
-    favoriteImages = await catsApi.getFavorites();
-    print('loading favorites $favoriteImages');
+    favoriteImages = ObservableList.of(await catsApi.getFavorites());
   }
 
   saveFavorite(String imageId) async {
     final savedFavorite = await catsApi.saveFavoriteImage(imageId);
     loadFavoriteImages();
-    print('saved favorite $savedFavorite');
     return;
+  }
+
+  @action
+  removeFavorite(int index) async {
+    final deletedFavourite = await catsApi.deleteFavorite(favoriteImages[index].id);
+    favoriteImages.removeAt(index);
   }
 
 

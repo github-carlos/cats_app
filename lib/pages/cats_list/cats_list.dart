@@ -138,7 +138,6 @@ class _ItemListState extends State<ItemList> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onDoubleTap: () {
-        print('favoritou');
         catApiStore.saveFavorite(widget.id);
         setState(() {
           opacity = 1;

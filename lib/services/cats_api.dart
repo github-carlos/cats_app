@@ -64,9 +64,17 @@ class CatsApi {
   }
   
   Future<dynamic> saveFavoriteImage(String imageId) async {
-    print('imageid $imageId');
     var body = jsonEncode({'image_id': imageId});
     final savedFavorite = await http.post('$baseUrl/favourites', headers: {'x-api-key': apiKey, "Content-Type": "application/json"}, body: body );
     return savedFavorite.body;
+  }
+
+  Future<dynamic> deleteFavorite(int favoriteId) async {
+    try {
+      final deletedFavorite = await http.delete('$baseUrl/favourites/$favoriteId', headers: {'x-api-key': apiKey});
+      return deletedFavorite.body;
+    } catch(err) {
+      print(err);
+    }
   }
 }

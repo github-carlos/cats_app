@@ -72,13 +72,13 @@ mixin _$CatApiStore on _CatApiStoreBase, Store {
   final _$favoriteImagesAtom = Atom(name: '_CatApiStoreBase.favoriteImages');
 
   @override
-  List<Favorite> get favoriteImages {
+  ObservableList<Favorite> get favoriteImages {
     _$favoriteImagesAtom.reportRead();
     return super.favoriteImages;
   }
 
   @override
-  set favoriteImages(List<Favorite> value) {
+  set favoriteImages(ObservableList<Favorite> value) {
     _$favoriteImagesAtom.reportWrite(value, super.favoriteImages, () {
       super.favoriteImages = value;
     });
@@ -124,6 +124,14 @@ mixin _$CatApiStore on _CatApiStoreBase, Store {
   Future loadFavoriteImages() {
     return _$loadFavoriteImagesAsyncAction
         .run(() => super.loadFavoriteImages());
+  }
+
+  final _$removeFavoriteAsyncAction =
+      AsyncAction('_CatApiStoreBase.removeFavorite');
+
+  @override
+  Future removeFavorite(int index) {
+    return _$removeFavoriteAsyncAction.run(() => super.removeFavorite(index));
   }
 
   final _$loadRandomImagesAsyncAction =
