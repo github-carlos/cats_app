@@ -1,6 +1,6 @@
 # Cat App 🐱
 
-This project was done as a proejct study of the [Flutter](https://flutter.dev/?gclid=Cj0KCQjw8fr7BRDSARIsAK0Qqr4OLCprOf_HXWjnd8K7K1bepeDaqcvrYXdy5l2LdAghLRUz_7HgR6saAoA6EALw_wcB&gclsrc=aw.ds) framework.Images and gifs of the cats are provided by this awesome [TheCatApi](https://docs.thecatapi.com/).
+This project was done as a study project of the [Flutter](https://flutter.dev/?gclid=Cj0KCQjw8fr7BRDSARIsAK0Qqr4OLCprOf_HXWjnd8K7K1bepeDaqcvrYXdy5l2LdAghLRUz_7HgR6saAoA6EALw_wcB&gclsrc=aw.ds) framework.Images and gifs of the cats are provided by this awesome [TheCatApi](https://docs.thecatapi.com/).
 
 ## Project demonstration
 ![App Demonstração](demonstração.gif)
